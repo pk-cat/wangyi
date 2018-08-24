@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>vue</title>
+</head>
+
+<body>
+    <div id="a">
+        <p v-bind:class={age:isage}>我叫{{name}},今年{{age}}</p>
+        <p v-bind:style={color:color,fontSize:fontSize+ 'px'}>我叫{{name}},今年{{age}}</p>
+        <p v-bind:style="styleObj">我叫{{name}},今年{{age}}</p>
+        <p :style="styleObj">我叫{{name}},今年{{age}}</p>
+        <div v-html="btn"></div>
+        <button v-on:click="click">点我</button>
+        <span v-bind:title="message">12435</span>
+
+
+        <div>
+            <label for="count">账号</label>
+            <input type="text" id="count">
+            <label v-if="isage">123</label>
+            <label v-else>456</label>
+            <table>
+                <tr v-for="(item, index) in list">
+                    <td>{{item.name}}</td>
+                    <td>{{item.name}}</td>
+                </tr>
+            </table>
+            <ul>
+                <li v-for="(item, index) in text">
+                    {{item.text}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+<script src="vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#a',
+        data() {
+            return {
+                name: "zhangsan",
+                age: 18,
+                isage: true,//控制classname
+                color: "red",
+                fontSize: 40,//控制style
+                styleObj: {
+                    backgroundColor: "pink"
+                },
+                //v-html
+                btn: "<h1>点我</h1>",
+                time: 1,
+                message: 'loaded thispage$on$' + new Date(),
+                list: [
+                    { name: "1" ,age:"23"}, { name: "2",age:"34" }, { name: "4",age:"34" }
+                ],
+                text: [
+                    { text: "asd" },
+                    { text: "sd" },
+                    { text: "f" },
+                ]
+            }
+        },
+        methods: {
+            click() {
+                // console.log(this);
+                this.message = "请输入"
+                this.isage = false;
+            }
+        }
+
+    })
+
+</script>
+
+</html>
